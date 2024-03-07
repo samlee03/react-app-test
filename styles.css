@@ -1,4 +1,4 @@
-body, h1, div, p{
+body, h1, div, p img{
     margin: 0;
     padding: 0;
 }
@@ -18,34 +18,111 @@ body, h1, div, p{
 }
 #description {
     font-weight: bold;
-    background-color: #DBEAC8;
-    color: #79CD98;
+    /* background-color: #DBEAC8; */
+    /* color: #79CD98; */
+    /* background-color: hsla(0, 0%, 15%, 1); */
+    background-color: hsl(0, 0%, 20%);
+    color: hsl(0, 0%, 95%);
     margin-left: .5in;
     margin-right: .5in;
     padding: 22px;
 }
+
 #header{
+    z-index: 1;
     display: flex;
-    flex-direction: row;
+    justify-content: flex-end;
+    gap: 1em;
+    /* margin-right: 1em; */
 }
-#header ul li{
-    display: inline-block;
-    flex-direction: row;
+#nav{
+    background-color: rgba(49, 49, 49, 0.7);
+    padding: 5px 15px 5px 0;
+    position: sticky;
+    top: 0px;
+}
+#header li{
+    /* display: inline-block;
+    flex-direction: row; */
+    /* padding: 10px 1rem; */
+    background-color: hsla(0, 0%, 30%, 0.7);
+    /* margin-left: .5rem;  */
+    list-style-type: none;
+    text-decoration: none;
+    color: white;
+    border-radius: 30px;
+}
+a { 
     padding: 10px 1rem;
-    background-color: rgba(128, 128, 128, 0.521);
-    margin-left: .5rem;
+    display: block;
+    border-radius: 20px;
+    text-decoration: none;
+}
+a:hover{
+    cursor: pointer;
+    background-color: hsla(0, 0%, 26%, 0.7);
+    transition: all 0.1s ease-out;
+}
+a:visited{
+    color: white;
 }
 #name-box{
     height: 500px;
     margin: 0;
-    background-color: rgba(118, 118, 118, 0.29);
+    padding: 50px 0;
+    background-color: hsla(0, 0%, 15%, 1);
     width: 100%;
 }
 #filler{
     height: 400px;
 }
-#subheading{
+.subheading{
+    padding: 100px 0 50px 0;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 50px;
 }
+#past-project-section{
+    z-index: -1;
+    background-color: hsl(0, 0%, 20%);
+    position: relative;    
+    height: 700px;
+}
+.card{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    border-radius: 10px;
+    /* display: relative; */
+    /* left: 33%; */
+    text-align: center;
+    width: 60rem;
+    height: 32rem;
+    color: black;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 10px;
+}
+.card img{
+    height: 300px;
+    width: 450px;
+    padding: 5px;
+}
+.card p{
+    font-size: 16px;
+}
+.card a{
+    text-decoration: underline;
+    display:inline;
+    color: black;
+}
+.card a:hover{
+    cursor: pointer;
+}
+#contact-card{
+    padding: 50px;
+    height: 100px;
+    background-color: hsl(0, 0%, 20%);
+}
+
