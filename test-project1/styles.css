@@ -1,0 +1,19 @@
+#start-button {
+    border: none;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 1.2rem;
+}
+
+.fake-button, .real-button {
+    background-color: red;
+    width: 50px;
+    height: 50px;
+    padding: 50px;
+    margin: 10px;
+    cursor: pointer;
+}
+.real-button {
+    background-color: green;
+}
+
