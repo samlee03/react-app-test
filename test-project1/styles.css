@@ -6,7 +6,7 @@
 }
 
 .fake-button, .real-button {
-    background-color: red;
+    /* background-color: red; */
     width: 50px;
     height: 50px;
     padding: 50px;
@@ -14,6 +14,17 @@
     cursor: pointer;
 }
 .real-button {
-    background-color: green;
+    /* background-color: green; */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.retry-button{
+    padding: 15px 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(209, 255, 174);
+}
+
+#difficulty-display{
+    font-weight: bold;
 }
 
