@@ -14,6 +14,34 @@ function wait(ms) {
 }
 /* *** */
 
+function retryDisplay(){
+    var buttonCollection = document.getElementById("button-collection");
+    var copyOfButtons = Array.from(buttonCollection.children);
+    var buttons = allButtons;
+    while (buttons[0]){
+        buttons[0].remove();
+    }
+    playButton.remove();
+
+    var retryButton = document.createElement("button");
+    retryButton.innerHTML = "retry";
+    retryButton.classList.add("retry-button");
+    document.body.append(retryButton);
+    
+    retryButton.addEventListener('click', function(){
+        copyOfButtons.forEach(function(button){
+            buttonCollection.append(button);
+            resetButton(button);
+        })
+        retryButton.remove();
+    })
+    sequence = [];
+    playerSequence = [];
+    score = 0;
+    var scoreDisplay = document.getElementById("score");
+    scoreDisplay.innerHTML = "score: 0";
+    
+}
 function activateButton(buttonElement){
     buttonElement.style.backgroundColor = "black";
 }
@@ -78,6 +106,10 @@ var b1 = document.getElementById("b1");
 var b2 = document.getElementById("b2");
 var b3 = document.getElementById("b3");
 function lightUpButton(buttonPressed, isCorrect){
+    if (!isCorrect){
+        // document.write("WRONG ANSWER");
+        retryDisplay();
+    }
     switch (buttonPressed) {
         case (1):
             isCorrect? b1.style.backgroundColor = "green" : b1.style.backgroundColor = "red";

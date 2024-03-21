@@ -4,3 +4,7 @@ button {
 .button-choice{
     padding: 50px;
 }
+.retry-button{
+    padding: 20px;
+    background-color: green;
+}
