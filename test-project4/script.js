@@ -22,7 +22,34 @@ function makeQuestion(operationType, score){
         //quotient
     }
 }
-
+function setChoices(choices, correct, correctAns, difference){
+    switch(correct){
+        case 0:
+            choices.children[0].innerHTML = correctAns;
+            choices.children[1].innerHTML = parseInt(correctAns) + 1*difference;
+            choices.children[2].innerHTML = parseInt(correctAns) + 2*difference;
+            choices.children[3].innerHTML = parseInt(correctAns) + 3*difference;
+            break;
+        case 1:
+            choices.children[0].innerHTML = parseInt(correctAns) + -1*difference;
+            choices.children[1].innerHTML = correctAns;
+            choices.children[2].innerHTML = parseInt(correctAns) + 2*difference;
+            choices.children[3].innerHTML = parseInt(correctAns) + 3*difference;
+            break;
+        case 2:
+            choices.children[0].innerHTML = parseInt(correctAns) + -2*difference;
+            choices.children[1].innerHTML = parseInt(correctAns) + -1*difference;
+            choices.children[2].innerHTML = correctAns;
+            choices.children[3].innerHTML = parseInt(correctAns) + 1*difference;
+            break;
+        case 3:
+            choices.children[0].innerHTML = parseInt(correctAns) + -3*difference;
+            choices.children[1].innerHTML = parseInt(correctAns) + -2*difference;
+            choices.children[2].innerHTML = parseInt(correctAns) + -1*difference;
+            choices.children[3].innerHTML = correctAns;
+            break;
+    }
+}
 
 function getInputs(operationType, score){
     var input1_ = "0";
@@ -34,45 +61,54 @@ function getInputs(operationType, score){
 
     var correctChoice = getRandNum(0, 4);
     choices.children[correctChoice].classList.add("correct-choice");
-    
     if (operationType == "add"){
-        //add
-        if (score < 5){
             var randNum1 = getRandNum(1, 20);
             var randNum2 = getRandNum(1, 20);
 
             input1_ = randNum1;
             input2_ = randNum2;
-            
-            // if (!(choice))
-        }
 
+            var correctAns = randNum1 + randNum2;
+            choices.children[correctChoice].innerHTML = correctAns;
+            console.log(correctChoice);
+            setChoices(choices, correctChoice, correctAns, 1);
     } else if (operationType == "subtract"){
-        //sub
-        if (score < 5){
             var randNum1 = getRandNum(1, 20);
             var randNum2 = randNum1 + getRandNum(1, 20);
 
             input1_ = randNum2;
             input2_ = randNum1;
-        }
+
+            var correctAns = randNum2 - randNum1;
+            choices.children[correctChoice].innerHTML = correctAns;
+            console.log(correctChoice);
+            setChoices(choices, correctChoice, correctAns, 1);
     } else if (operationType == "multiply"){
-        if (score < 5){
+        // if (score < 5){
             var randNum1 = getRandNum(0, 13);
             var randNum2 = getRandNum(0, 13);
 
             input1_ = randNum1;
             input2_ = randNum2;
-        }
+
+            var correctAns = randNum2 * randNum1;
+            choices.children[correctChoice].innerHTML = correctAns;
+            console.log(correctChoice);
+            setChoices(choices, correctChoice, correctAns, 1);
+        // }
         //multiply
     } else {
-        if (score < 5){
+        // if (score < 5){
             var randNum1 = getRandNum(1, 12);
             var randNum2 = getRandNum(1, 12);
             var randNum3 = randNum1 * randNum2;
             input1_ = randNum3;
             input2_ = randNum1;
-        }
+            var correctAns = randNum2;
+            choices.children[correctChoice].innerHTML = correctAns;
+            console.log(correctChoice);
+            setChoices(choices, correctChoice, correctAns, 1);
+        // }
         //quotient
     }
 
@@ -90,10 +126,47 @@ function playGame(){
     var score = 0;
     var operations = ["add", "subtract", "multiply", "divide"];
     var isCorrect = true;
+
+    var choices = document.getElementById("choices");
+
+
     while (isCorrect){
         let rand = getRandNum(0, 4);
         makeQuestion(operations[rand], score);
+
+  
+        choices.children[0].addEventListener("click", function(){
+            if (choices.children[0].classList.contains("correct-choice")){
+                console.log('correct answer');
+            } else {
+                console.log('wrong answer');
+            }
+        })
+        choices.children[1].addEventListener("click", function(){
+            if (choices.children[0].classList.contains("correct-choice")){
+                console.log('correct answer');
+            } else {
+                console.log('wrong answer');
+            }
+        })
+        choices.children[2].addEventListener("click", function(){
+            if (choices.children[0].classList.contains("correct-choice")){
+                console.log('correct answer');
+            } else {
+                console.log('wrong answer');
+            }
+        })
+        choices.children[3].addEventListener("click", function(){
+            if (choices.children[0].classList.contains("correct-choice")){
+                console.log('correct answer');
+            } else {
+                console.log('wrong answer');
+            }
+        })
+
         isCorrect = false;
+
+
     }
 }
 
