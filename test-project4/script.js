@@ -10,15 +10,15 @@ function makeQuestion(operationType, score){
     var data = getInputs(operationType, score);
     if (operationType == "add"){
         //add
-        question.innerHTML = "what is " + data.input1 + " + " + data.input2 + "?";
+        question.innerHTML = "What is " + data.input1 + " + " + data.input2 + "?";
     } else if (operationType == "subtract"){
-        question.innerHTML = "what is " + data.input1 + " - " + data.input2 + "?";
+        question.innerHTML = "What is " + data.input1 + " - " + data.input2 + "?";
         //sub
     } else if (operationType == "multiply"){
-        question.innerHTML = "what is " + data.input1 + " x " + data.input2 + "?";
+        question.innerHTML = "What is " + data.input1 + " x " + data.input2 + "?";
         //multiply
     } else {
-        question.innerHTML = "what is " + data.input1 + " / " + data.input2 + "?";
+        question.innerHTML = "What is " + data.input1 + " / " + data.input2 + "?";
         //quotient
     }
 }
@@ -125,51 +125,67 @@ function getInputs(operationType, score){
 function playGame(){
     var score = 0;
     var operations = ["add", "subtract", "multiply", "divide"];
-    var isCorrect = true;
-
     var choices = document.getElementById("choices");
 
+    let rand = getRandNum(0, 4);
+    makeQuestion(operations[rand], score);
+    isCorrect = false;
 
-    while (isCorrect){
-        let rand = getRandNum(0, 4);
-        makeQuestion(operations[rand], score);
-
-  
-        choices.children[0].addEventListener("click", function(){
-            if (choices.children[0].classList.contains("correct-choice")){
-                console.log('correct answer');
-            } else {
-                console.log('wrong answer');
-            }
-        })
-        choices.children[1].addEventListener("click", function(){
-            if (choices.children[0].classList.contains("correct-choice")){
-                console.log('correct answer');
-            } else {
-                console.log('wrong answer');
-            }
-        })
-        choices.children[2].addEventListener("click", function(){
-            if (choices.children[0].classList.contains("correct-choice")){
-                console.log('correct answer');
-            } else {
-                console.log('wrong answer');
-            }
-        })
-        choices.children[3].addEventListener("click", function(){
-            if (choices.children[0].classList.contains("correct-choice")){
-                console.log('correct answer');
-            } else {
-                console.log('wrong answer');
-            }
-        })
-
-        isCorrect = false;
-
-
+    for (var i = 0; i < 4; i++){
+        (function(index)
+            {choices.children[index].addEventListener("click", function(){
+                if (choices.children[index].classList.contains("correct-choice")){
+                    console.log('correct answer');
+                    score += 1;
+                    document.getElementById("score-display").innerHTML = "Score: " + score;
+                    // playGame();
+                    let rand = getRandNum(0, 4);
+                    makeQuestion(operations[rand], score);
+                } else {
+                    score -= 1;
+                    document.getElementById("score-display").innerHTML = "Score: " + score;
+                }
+            })
+        })(i);
     }
 }
-
 playGame();
 
+var special = document.getElementById("special");
+var numbers = [];
 
+special.addEventListener("click", mentalMath);
+
+function mentalMath(){
+    // REMOVE
+    while (body.children[0]){
+        body.children[0].remove();
+    }
+    var sum = 0;
+    for (var i = 0; i < 10; i++){
+        var randNum = getRandNum(-9, 20);
+        while (randNum == numbers[numbers.length - 1]){
+            randNum = getRandNum(-9, 20);
+        }
+        numbers.push(randNum);
+        sum += randNum; 
+    }
+    console.log(numbers);
+    var myElement = document.createElement("p");
+    document.getElementById("body").appendChild(myElement);
+    myElement.classList.add("number-display");
+    
+    for (let i = 0; i < numbers.length; i++){
+        // console.log(numbers[i]);
+        setTimeout(function(){
+            myElement.innerHTML = numbers[i];
+            console.log(numbers[i]);
+        }, i * 500)
+    }
+    setTimeout(function(){
+        myElement.innerHTML = "";
+    }, 500 * numbers.length)
+    // var text = document.createElement("p");
+    
+}
+// mentalMath();
